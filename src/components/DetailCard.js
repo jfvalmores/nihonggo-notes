@@ -9,7 +9,7 @@ const customStyles = makeStyles({
   card: {
     width: 275,
     margin: 10,
-    backgroundColor: 'lightgrey',
+    backgroundColor: 'lightgreen',
   },
   detailText: {
     fontSize: 50,
@@ -17,9 +17,11 @@ const customStyles = makeStyles({
   }
 });
 
-const DetailCard = (props) => {
+export const DetailCard = (props) => {
+  if (!props.detail || !props.detail.character) return null;
+
   const classes = customStyles();
-  
+
   return (
     <Card className={classes.card}>
       <CardContent>
@@ -32,5 +34,3 @@ const DetailCard = (props) => {
     </Card>
   );
 }
-
-export default DetailCard;
