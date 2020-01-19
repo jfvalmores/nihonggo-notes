@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import { Link } from 'react-router-dom';
 import { DetailCard } from './DetailCard.js';
+import { Grid, Button, ButtonGroup, Tooltip } from '@material-ui/core';
+import Grow from '@material-ui/core/Grow';
 
 const customStyles = makeStyles({
   customList: {
@@ -10,15 +11,14 @@ const customStyles = makeStyles({
     paddingLeft: 5
   },
   characterButton: {
-    fontSize: 20,
-    fontWeight: 500,
-    border: 'none',
-    margin: 2,
-    cursor: 'pointer'
+    fontWeight: 600
   },
   sectionContainer: {
     float: 'left',
-    width: '100%'
+    width: '100%',
+    '& > *': {
+      margin: 5,
+    },
   }
 });
 
@@ -32,30 +32,51 @@ export const List = (props) => {
 
   const formatSectionList = (dataList = []) => {
     let sections = [];
-    for (const section of dataList) {
+    for (let i = 0; i < dataList.length; i++) {
       sections.push(
-        <ul className={classes.customList}>
-          {section.map((o, idx) => {
-            return (
-              <li key={idx}>
-                <button className={classes.characterButton} onClick={() => setCharacter(o)}>{o.character}</button>
-              </li>
-            );
-          })}
-        </ul>
+        <Grow
+          in={true}
+          key={i}>
+          <ButtonGroup
+            orientation="vertical"
+            color="primary"
+            aria-label="vertical outlined primary button group">
+            {dataList[i].map((o, idx) => formatSection(o, idx))}
+          </ButtonGroup>
+        </Grow>
       );
     }
 
     return sections;
   }
 
+  const formatSection = (charObj, idx) => {
+    return (
+      <Tooltip
+        title={charObj.label}
+        key={idx}>
+        <Button
+          className={classes.characterButton}
+          onClick={() => setCharacter(charObj)}>
+          {charObj.character}
+        </Button>
+      </Tooltip>
+    );
+  }
+
   return (
-    <React.Fragment>
-      <div className={classes.sectionContainer}>{getSections()}</div>
-      <div>
-        <DetailCard detail={character} />
-      </div>
-    </React.Fragment>
+    <Grid container spacing={3}>
+      <Grid item xs={8}>
+        <div className={classes.sectionContainer}>
+          {getSections()}
+        </div>
+      </Grid>
+      <Grid item xs={4}>
+        <div>
+          <DetailCard detail={character} />
+        </div>
+      </Grid>
+    </Grid>
   );
 
 }
