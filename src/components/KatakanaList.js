@@ -3,12 +3,7 @@ import { KATAKANA } from '../constants/katakana.js';
 import { List } from './List.js';
 
 export const KatakanaList = (props) => {
-  return (
-    <List
-      list={KATAKANA}>
-      {props.children}
-    </List>
-  );
+  return <List list={KATAKANA} />;
 }
 
 export default KatakanaList;
