@@ -4,14 +4,15 @@ import { routes } from '../system/routes.js';
 import { makeStyles } from '@material-ui/core/styles';
 import Header from './Header.js';
 
-const customStyles = makeStyles({
+const styles = makeStyles({
   container: {
-    margin: 10
+    margin: 10,
+    backgroundColor: 'inherit'
   }
 });
 
 const Main = () => {
-  const classes = customStyles();
+  const classes = styles();
 
   return (
     <React.Fragment>

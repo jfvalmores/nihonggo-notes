@@ -1,10 +1,10 @@
 export const HIRAGANA = [
   [
-    { label: 'a', character: 'あ' },
-    { label: 'i', character: 'い' },
-    { label: 'u', character: 'う' },
-    { label: 'e', character: 'え' },
-    { label: 'o', character: 'お' }
+    { id: 'item-1', label: 'a', character: 'あ' },
+    { id: 'item-2', label: 'i', character: 'い' },
+    { id: 'item-3', label: 'u', character: 'う' },
+    { id: 'item-4', label: 'e', character: 'え' },
+    { id: 'item-5', label: 'o', character: 'お' }
   ],
   [
     { label: 'ka', character: 'か' },

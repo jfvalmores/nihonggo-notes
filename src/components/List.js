@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { DetailCard } from './DetailCard.js';
 import { Grid, Button, ButtonGroup, Tooltip } from '@material-ui/core';
-import Grow from '@material-ui/core/Grow';
 
 const customStyles = makeStyles({
   customList: {
@@ -34,16 +33,13 @@ export const List = (props) => {
     let sections = [];
     for (let i = 0; i < dataList.length; i++) {
       sections.push(
-        <Grow
-          in={true}
-          key={i}>
-          <ButtonGroup
-            orientation="vertical"
-            color="primary"
-            aria-label="vertical outlined primary button group">
-            {dataList[i].map((o, idx) => formatSection(o, idx))}
-          </ButtonGroup>
-        </Grow>
+        <ButtonGroup
+          key={i}
+          orientation="vertical"
+          color="primary"
+          aria-label="vertical outlined primary button group">
+          {dataList[i].map((o, idx) => formatSection(o, idx))}
+        </ButtonGroup>
       );
     }
 
