@@ -40,10 +40,13 @@ const useStyles = makeStyles(theme => ({
     flexGrow: 1,
     backgroundColor: 'inherit',
     display: 'flex',
-    height: 224,
   },
   tabs: {
     borderRight: `1px solid ${theme.palette.divider}`,
+    minWidth: 160,
+  },
+  tab: {
+    textTransform: 'none',
   },
 }));
 
@@ -69,6 +72,7 @@ export default function VerticalTabs(props) {
             <Tab
               key={idx}
               label={route.title}
+              className={classes.tab}
               {...a11yProps(idx)} />)}
       </Tabs>
       {props.tabs.map(

@@ -1,5 +1,5 @@
 import React from 'react';
-import { topicRoutes } from '../system/routes.js';
+import { topicRoutes } from '../core/CRoutes.js';
 import VerticalTabs from './VerticalTabs.js';
 
 export const Topics = () => {

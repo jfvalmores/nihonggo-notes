@@ -9,7 +9,7 @@ import InboxIcon from '@material-ui/icons/MoveToInbox';
 import MailIcon from '@material-ui/icons/Mail';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
-import { routes } from '../system/routes.js';
+import { routes } from '../core/CRoutes.js';
 import { useHistory } from 'react-router-dom';
 
 const useStyles = makeStyles({
