@@ -18,19 +18,20 @@ const Main = () => {
     <React.Fragment>
       <div>
         <Router>
-          <Header />
-          <div className={classes.container}>
-            <Switch>
-              {routes.map((route, idx) => (
-                <Route
-                  key={idx}
-                  exact
-                  {...route}
-                />
-              ))}
-              <Redirect exact from="/" to="home" />
-            </Switch>
-          </div>
+          <Header>
+            <div className={classes.container}>
+              <Switch>
+                {routes.map((route, idx) => (
+                  <Route
+                    key={idx}
+                    exact
+                    {...route}
+                  />
+                ))}
+                <Redirect exact from="/" to="home" />
+              </Switch>
+            </div>
+          </Header>
         </Router>
       </div>
     </React.Fragment>

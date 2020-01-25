@@ -14,8 +14,16 @@ export const Topics = () => {
     getHiragana();
   }, []);
 
-  const getHiragana = async () => setHiraganaList(await getHiraganaList())
-  const getKatakana = async () => setKatakanaList(await getKatakanaList())
+  const getHiragana = async () => {
+    let list = await getHiraganaList();
+    if (!list.length) list = [];
+    setHiraganaList(list);
+  }
+  const getKatakana = async () => {
+    let list = await getKatakanaList();
+    if (!list.length) list = [];
+    setKatakanaList(list);
+  }
 
   return (
     <VerticalTabs

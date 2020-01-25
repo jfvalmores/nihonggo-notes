@@ -18,7 +18,10 @@ function TabPanel(props) {
       aria-labelledby={`vertical-tab-${index}`}
       {...other}
     >
-      {value === index && <Box p={3}>{children}</Box>}
+      {value === index &&
+        <Box p={0}>
+          {children}
+        </Box>}
     </Typography>
   );
 }
@@ -48,6 +51,9 @@ const useStyles = makeStyles(theme => ({
   tab: {
     textTransform: 'none',
   },
+  box: {
+    padding: 0
+  }
 }));
 
 export default function VerticalTabs(props) {
