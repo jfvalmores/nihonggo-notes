@@ -56,7 +56,7 @@ export default function VerticalTabs(props) {
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
-  };
+  }
 
   return (
     <div className={classes.root}>
@@ -82,7 +82,10 @@ export default function VerticalTabs(props) {
               key={idx}
               value={value}
               index={idx}>
-              {route.component}
+              {React.cloneElement(
+                route.component,
+                { ...props }
+              )}
             </TabPanel>
           );
         }

@@ -1,33 +1,17 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 import { makeStyles } from '@material-ui/core/styles';
-import intf from '../core/CInterface.js';
-
-const { getHiraganaList } = intf();
 
 const styles = makeStyles({
   description: {
     fontWeight: 400,
     fontSize: 15
   },
-  container: {
-    float: 'left',
-    width: '100%'
-  },
   dndPlatform: {
     float: 'left',
     margin: '8px 0 0 8px'
   }
 });
-
-const getItems = () =>
-  [
-    { id: '1', label: 'a', content: 'あ' },
-    { id: '2', label: 'i', content: 'い' },
-    { id: '3', label: 'u', content: 'う' },
-    { id: '4', label: 'e', content: 'え' },
-    { id: '5', label: 'o', content: 'お' }
-  ];
 
 // a little function to help us with reordering the result
 const reorder = (list, startIndex, endIndex) => {
@@ -68,7 +52,7 @@ const getListStyle = isDraggingOver => ({
   width: 150
 });
 
-const RenderDndPlatform = (props) => {
+const DragDropPlatform = (props) => {
   const [items, setItems] = useState(props.items);
 
   const classes = styles();
@@ -127,25 +111,4 @@ const RenderDndPlatform = (props) => {
   );
 }
 
-const HiraganaListv2 = () => {
-  const [list, setList] = useState([]);
-  const classes = styles();
-
-  useEffect(() => {
-    getList()
-  }, []);
-
-  const getList = async () => setList(await getHiraganaList())
-
-  return (
-    <div className={classes.container}>
-      {list.map((items, idx) =>
-        <RenderDndPlatform
-          key={idx}
-          items={items} />
-      )}
-    </div>
-  );
-}
-
-export default HiraganaListv2;
+export default DragDropPlatform;

@@ -1,22 +1,31 @@
-import React, { useEffect, useState } from 'react';
-import { List } from './List.js';
-import intf from '../core/CInterface.js';
+import React, { useState, useEffect } from "react";
+import { makeStyles } from '@material-ui/core/styles';
+import DragDropPlatform from './DragDropPlatform.js';
 
-const { getKatakanaList } = intf();
+const styles = makeStyles({
+  container: {
+    float: 'left',
+    width: '100%'
+  },
+});
 
-export const KatakanaList = () => {
+const KatakanaList = (props) => {
   const [list, setList] = useState([]);
+  const classes = styles();
 
   useEffect(() => {
-    getList();
-  }, []);
+    setList(props.katakanaList);
+  }, [props.katakanaList]);
 
-  const getList = async () => {
-    const list = await getKatakanaList();
-    setList(list);
-  }
-
-  return <List list={list} />;
+  return (
+    <div className={classes.container}>
+      {list.map((items, idx) =>
+        <DragDropPlatform
+          key={idx}
+          items={items} />
+      )}
+    </div>
+  );
 }
 
 export default KatakanaList;
