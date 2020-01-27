@@ -5,8 +5,6 @@ import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
-import InboxIcon from '@material-ui/icons/MoveToInbox';
-import MailIcon from '@material-ui/icons/Mail';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import { routes } from '../core/CRoutes.js';
@@ -54,7 +52,7 @@ const Sidebar = (props) => {
             button
             key={route.title}
             onClick={() => handleClick(route.path)}>
-            <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
+            <ListItemIcon>{route.icon}</ListItemIcon>
             <ListItemText>{route.title}</ListItemText>
           </ListItem>
         ))}

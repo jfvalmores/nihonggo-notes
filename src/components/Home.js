@@ -35,30 +35,34 @@ const Home = () => {
   useEffect(() => {
     refresh(0);
     refresh(1);
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [hiraganaList, katakanaList]);
 
   const refresh = (mode = 1) => {
     if (mode)
-      setKatakana(kl[Math.floor(Math.random() * kl.length)]);
-    else 
-      setHiragana(hl[Math.floor(Math.random() * hl.length)]);
+      setKatakana(getRandomItem(kl));
+    else
+      setHiragana(getRandomItem(hl));
+  }
+
+  function getRandomItem(list) {
+    return list[Math.floor(Math.random() * list.length)]
   }
 
   return (
     <div>
-      {hiragana && 
-        <CharacterCard 
+      {hiragana &&
+        <CharacterCard
           classes={classes}
-          header={'Quick Card:'}
+          header={'Quick Hiragana:'}
           character={hiragana.character}
           label={hiragana.label}
           onClick={() => refresh(0)} />
       }
-      {katakana && 
-        <CharacterCard 
+      {katakana &&
+        <CharacterCard
           classes={classes}
-          header={'Quick Card:'}
+          header={'Quick Katakana:'}
           character={katakana.character}
           label={katakana.label}
           onClick={() => refresh(1)} />
@@ -82,7 +86,7 @@ const CharacterCard = (props) => {
         </Typography>
       </CardContent>
       <CardActions className={props.classes.actions}>
-        <Button 
+        <Button
           size="small"
           onClick={props.onClick}
           className={props.classes.actionButton}>Refresh</Button>
