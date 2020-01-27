@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import DragDropPlatform from './DragDropPlatform.js';
+import DataContext from '../core/DataContext.js';
 
 const styles = makeStyles({
   container: {
@@ -9,12 +10,13 @@ const styles = makeStyles({
   },
 });
 
-const HiraganaList = (props) => {
+const HiraganaList = () => {
   const classes = styles();
+  const { hiraganaList } = useContext(DataContext);
 
   return (
     <div className={classes.container}>
-      {props.hiraganaList.map((items, idx) =>
+      {hiraganaList.map((items, idx) =>
         <DragDropPlatform
           key={idx}
           items={items} />

@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import DragDropPlatform from './DragDropPlatform.js';
+import DataContext from '../core/DataContext.js';
 
 const styles = makeStyles({
   container: {
@@ -9,12 +10,13 @@ const styles = makeStyles({
   },
 });
 
-const KatakanaList = (props) => {
+const KatakanaList = () => {
   const classes = styles();
+  const { katakanaList } = useContext(DataContext);
 
   return (
     <div className={classes.container}>
-      {props.katakanaList.map((items, idx) =>
+      {katakanaList.map((items, idx) =>
         <DragDropPlatform
           key={idx}
           items={items} />
