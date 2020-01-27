@@ -48,7 +48,7 @@ const Header = (props) => {
             <Sidebar />
             <Typography variant="subtitle1" className={classes.title}>
               Notes
-          </Typography>
+            </Typography>
           </Toolbar>
         </AppBar>
       </ElevationScroll>
