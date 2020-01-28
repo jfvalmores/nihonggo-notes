@@ -1,1 +1,6 @@
-export const serverURL = 'http://localhost:3004';
+function getDomain() {
+  const { protocol, hostname } = window.location;
+  return `${protocol}//${hostname}`;
+}
+
+export const serverURL = `${getDomain()}:3004`;

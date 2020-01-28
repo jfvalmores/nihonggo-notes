@@ -4,10 +4,12 @@ import Topics from '../components/Topics.js';
 import KatakanaList from '../components/KatakanaList.js';
 import HiraganaList from '../components/HiraganaList.js';
 import Challenge from '../components/Challenge.js';
+import Registration from '../components/Registration.js';
 
 import DescriptionIcon from '@material-ui/icons/Description';
 import HomeIcon from '@material-ui/icons/Home';
 import GamesIcon from '@material-ui/icons/Games';
+import AccountBoxIcon from '@material-ui/icons/AccountBox';
 
 
 export const routes = [
@@ -28,6 +30,12 @@ export const routes = [
     path: '/challenge',
     icon: <GamesIcon />,
     component: Challenge
+  },
+  {
+    title: 'Registration',
+    path: '/registration',
+    icon: <AccountBoxIcon />,
+    component: Registration
   },
 ];
 

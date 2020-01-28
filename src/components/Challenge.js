@@ -7,10 +7,11 @@ import SearchIcon from '@material-ui/icons/Search';
 import Tooltip from '@material-ui/core/Tooltip';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import { makeStyles } from '@material-ui/core/styles';
+import PopupMessage from './PopupMessage.js';
 
 const styles = makeStyles({
   containerGrid: {
-    margin: 30
+    margin: 14
   },
   charBtn: {
     fontSize: 18,
@@ -30,9 +31,9 @@ const Challenge = () => {
   const [hiragana, setHiragana] = useState([]);
   const [katakana, setKatakana] = useState([]);
   const [guessPool, setGuessPool] = useState([]);
-  const [keywords, setKeywords] = useState({
-    hKeyword: '',
-    kKeyword: ''
+  const [popup, setPopup] = useState({
+    show: false,
+    message: '',
   });
 
   useEffect(() => {
@@ -41,36 +42,23 @@ const Challenge = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [hiraganaList, katakanaList]);
 
-  const handleChange = e => {
-    const p = { [e.target.id]: e.target.value };
-    setKeywords({
-      ...keywords,
-      ...p
-    });
-
-    searchCharacter({ id: e.target.id, val: e.target.value });
-  }
-
-  const searchCharacter = param => {
-    if (param.id === 'hKeyword') {
-      setHiragana(hl.filter(o => o.label.includes(param.val)));
-    } else {
-      setKatakana(kl.filter(o => o.label.includes(param.val)));
-    }
-  }
-
   const addToGuessPool = item => {
     const newPool = guessPool.slice();
-    const exists = guessPool.filter(o => o.label.includes(item.val));
-    console.log(exists);
-    if (exists.length === 0) {
+    const exists = guessPool.find(o => o.label === item.label);
+    if (exists) {
+      setPopup({ show: true, message: 'Already in Guess Pool.' });
+    } else {
       newPool.push(item);
       setGuessPool(newPool);
     }
   }
 
+  const closePopup = () => {
+    setPopup({ show: false, message: '' });
+  }
+
   return (
-    <>
+    <div className={classes.containerGrid}>
       <CssBaseline />
       <Grid container>
         <span>Guessing pool:</span>
@@ -91,81 +79,81 @@ const Challenge = () => {
       </Grid>
       <Grid
         container
-        spacing={0}
-        className={classes.containerGrid}>
-        <Grid xs={6}>
-          <div className={classes.keywordContainer}>
-            <Grid
-              container
-              spacing={1}
-              alignItems="flex-end">
-              <Grid item>
-                <SearchIcon />
-              </Grid>
-              <Grid item>
-                <TextField
-                  id="hKeyword"
-                  label="Search Hiragana"
-                  value={keywords.hKeyword}
-                  onChange={handleChange} />
-              </Grid>
-            </Grid>
-          </div>
-          <div>
-            {hiragana.length === 0 ?
-              (<p>No results</p>) :
-              (hiragana.map((item, idx) => (
-                <Tooltip
-                  title={item.label}
-                  key={`item-${idx}`}>
-                  <Button
-                    className={classes.charBtn}
-                    variant="outlined"
-                    color="secondary"
-                    onClick={() => addToGuessPool(item)}>
-                    {item.character}
-                  </Button>
-                </Tooltip>
-              )))}
-          </div>
+        spacing={0}>
+        <Grid item xs={6}>
+          <SearchList 
+            origList={hl}
+            onSearch={result => setHiragana(result)}
+            textLabel={'Search Hiragana'}
+            list={hiragana}
+            handleClick={item => addToGuessPool(item)} />
         </Grid>
-        <Grid xs={6}>
-          <div className={classes.keywordContainer}>
-            <Grid
-              container
-              spacing={1}
-              alignItems="flex-end">
-              <Grid item>
-                <SearchIcon />
-              </Grid>
-              <Grid item>
-                <TextField
-                  id="kKeyword"
-                  label="Search Katakana"
-                  value={keywords.kKeyword}
-                  onChange={handleChange} />
-              </Grid>
-            </Grid>
-          </div>
-          <div>
-            {katakana.length === 0 ?
-              (<p>No results</p>) :
-              (katakana.map((item, idx) => (
-                <Tooltip
-                  title={item.label}
-                  key={`item-${idx}`}>
-                  <Button
-                    className={classes.charBtn}
-                    variant="outlined"
-                    color="secondary"
-                    onClick={() => addToGuessPool(item)}>
-                    {item.character}
-                  </Button>
-                </Tooltip>
-              )))}
-          </div>
+        <Grid item xs={6}>
+          <SearchList 
+            origList={kl}
+            onSearch={result => setKatakana(result)}
+            textLabel={'Search Katakana'}
+            list={katakana}
+            handleClick={item => addToGuessPool(item)} />
         </Grid>
       </Grid>
+      <PopupMessage
+        {...popup}
+        handleClose={closePopup} />
+    </div>
+  );
+}
+
+const SearchList = props => {
+  const classes = styles();
+  const [keyword, setKeyword] = useState('');
+
+  const handleChange = e => {
+    e.preventDefault();
+    const key = e.target.value || '';
+    setKeyword(key);
+    searchCharacter(key);
+  }
+
+  const searchCharacter = key => {
+    props.onSearch(props.origList.filter(o => o.label.includes(key)));
+  }
+
+  return (
+    <>
+      <div className={classes.keywordContainer}>
+        <Grid
+          container
+          spacing={1}
+          alignItems="flex-end">
+          <Grid item>
+            <SearchIcon />
+          </Grid>
+          <Grid item>
+            <TextField
+              label={props.textLabel}
+              value={keyword}
+              onChange={handleChange} />
+          </Grid>
+        </Grid>
+      </div>
+      <div>
+        {props.list.length === 0 ?
+          (<p>No results</p>) :
+          (props.list.map((item, idx) => (
+            <Tooltip
+              title={item.label}
+              key={`item-${idx}`}>
+              <Button
+                className={classes.charBtn}
+                variant="outlined"
+                color="secondary"
+                onClick={() => props.handleClick(item)}>
+                {item.character}
+              </Button>
+            </Tooltip>
+          )))}
+      </div>
     </>
   );
 }
