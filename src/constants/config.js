@@ -3,4 +3,5 @@ function getDomain() {
   return `${protocol}//${hostname}`;
 }
 
-export const serverURL = `${getDomain()}:3004`;
+export const serverURL = `${process.env.URL}`;
+console.log(process.env);

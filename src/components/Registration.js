@@ -1,9 +1,50 @@
 import React, { useState } from 'react';
 import { Formik } from 'formik';
 import TextField from '@material-ui/core/TextField';
+import { makeStyles } from '@material-ui/core/styles';
 
-const Registration2 = () => {
-  const [keys, setKeys] = useState({
+const styles = makeStyles(theme => ({
+  root: {
+    '& .MuiTextField-root': {
+      margin: theme.spacing(1),
+      width: 200,
+    },
+  },
+}))
+
+function TextInput(props) {
+  const [inputValue, setInputValue] = useState('');
+  const {
+    id,
+    type,
+    label,
+    onChange
+  } = props;
+
+  const handleChange = e => {
+    setInputValue(e.target.value);
+    onChange(e.target.id, e.target.value);
+  }
+
+  return (
+    <TextField
+      id={id}
+      type={type}
+      label={label}
+      value={inputValue}
+      onChange={handleChange}
+      variant="outlined"
+    />
+  );
+}
+
+async function handleSubmit(values) {
+  await new Promise(resolve => setTimeout(resolve, 500));
+  alert(JSON.stringify(values, null, 2));
+}
+
+const Registration3 = props => {
+  const mKeys = {
     username: '',
     email: '',
     firstName: '',
@@ -13,300 +54,92 @@ const Registration2 = () => {
     birthdate: '',
     address: '',
     bio: '',
-  });
+  }
 
-  const handleSubmit = async values => {
-    await new Promise(resolve => setTimeout(resolve, 500));
-    alert(JSON.stringify(values, null, 2));
+  const classes = styles();
+
+  const handleChange = (id, value) => {
+    mKeys[id] = value;
+    console.log(mKeys);
   }
 
   return (
-    <Formik
-      initialValues={keys}
-      onSubmit={handleSubmit}
-    // validationSchema={}
-    >
-      {props => {
-        const {
-          values,
-          touched,
-          errors,
-          dirty,
-          isSubmitting,
-          handleChange,
-          handleSubmit,
-          handleBlur,
-          handleReset,
-        } = props;
-        return (
-          <form onSubmit={handleSubmit}>
-            <div>
-              <label htmlFor="username" style={{ display: "block" }}>
-                Username
-              </label>
-              <TextField
-                id="username"
-                placeholder="Enter your username"
-                type="text"
-                value={values.username}
-                onChange={handleChange}
-                onBlur={handleBlur}
-              />
-            </div>
-            <div>
-              <label htmlFor="email" style={{ display: "block" }}>
-                Email
-              </label>
-              <TextField
-                id="email"
-                placeholder="Enter your email"
-                type="text"
-                value={values.email}
-                onChange={handleChange}
-                onBlur={handleBlur}
-              />
-            </div>
-            <div>
-              <label htmlFor="firstName" style={{ display: "block" }}>
-                First Name
-              </label>
-              <TextField
-                id="firstName"
-                placeholder="Enter your firstName"
-                type="text"
-                value={values.firstName}
-                onChange={handleChange}
-                onBlur={handleBlur}
-              />
-            </div>
-            <div>
-              <label htmlFor="lastName" style={{ display: "block" }}>
-                Last Name
-              </label>
-              <TextField
-                id="lastName"
-                placeholder="Enter your lastName"
-                type="text"
-                value={values.lastName}
-                onChange={handleChange}
-                onBlur={handleBlur}
-              />
-            </div>
-            <div>
-              <label htmlFor="password" style={{ display: "block" }}>
-                Password
-              </label>
-              <TextField
-                id="password"
-                placeholder="Enter your password"
-                type="password"
-                value={values.password}
-                onChange={handleChange}
-                onBlur={handleBlur}
-              />
-            </div>
-            <div>
-              <label htmlFor="confirmPassword" style={{ display: "block" }}>
-                Confirm Password
-              </label>
-              <TextField
-                id="confirmPassword"
-                placeholder="Enter confirmed password"
-                type="password"
-                value={values.confirmPassword}
-                onChange={handleChange}
-                onBlur={handleBlur}
-              />
-            </div>
-            <div>
-              <label htmlFor="birthdate" style={{ display: "block" }}>
-                Birthdate
-              </label>
-              <TextField
-                id="birthdate"
-                placeholder="Enter your birthdate"
-                type="text"
-                value={values.birthdate}
-                onChange={handleChange}
-                onBlur={handleBlur}
-              />
-            </div>
-            <div>
-              <label htmlFor="address" style={{ display: "block" }}>
-                Address
-              </label>
-              <TextField
-                id="address"
-                placeholder="Enter your address"
-                type="text"
-                value={values.address}
-                onChange={handleChange}
-                onBlur={handleBlur}
-              />
-            </div>
-            <div>
-              <label htmlFor="bio" style={{ display: "block" }}>
-                Bio
-              </label>
-              <TextField
-                id="bio"
-                placeholder="Enter your bio"
-                type="text"
-                value={values.bio}
-                onChange={handleChange}
-                onBlur={handleBlur}
-              />
-            </div>
-
-
-            <button
-              type="button"
-              className="outline"
-              onClick={handleReset}
-              disabled={!dirty || isSubmitting}
-            >
-              Reset
-            </button>
-            <button type="submit" disabled={isSubmitting}>
-              Submit
-            </button>
-          </form>
-        );
-      }}
-    </Formik>
-  );
-}
-
-const Registration3 = props => {
-  const [values, setValues] = useState({
-      username: '',
-      email: '',
-      firstName: '',
-      lastName: '',
-      password: '',
-      confirmPassword: '',
-      birthdate: '',
-      address: '',
-      bio: '',
-    });
-
-  const handleChange = e => {
-    setValues({
-      ...values,
-      [e.target.id]: e.target.value
-    });
-  }
-
-  return (
-    <form>
+    <form className={classes.root} noValidate autoComplete="off" onSubmit={handleSubmit}>
       <div>
-              <label htmlFor="username" style={{ display: "block" }}>
-                Username
-              </label>
-              <TextField
-                id="username"
-                placeholder="Enter your username"
-                type="text"
-                value={values.username}
-                onChange={handleChange}
-              />
-            </div>
-            <div>
-              <label htmlFor="email" style={{ display: "block" }}>
-                Email
-              </label>
-              <TextField
-                id="email"
-                placeholder="Enter your email"
-                type="text"
-                value={values.email}
-                onChange={handleChange}
-              />
-            </div>
-            <div>
-              <label htmlFor="firstName" style={{ display: "block" }}>
-                First Name
-              </label>
-              <TextField
-                id="firstName"
-                placeholder="Enter your firstName"
-                type="text"
-                value={values.firstName}
-                onChange={handleChange}
-              />
-            </div>
-            <div>
-              <label htmlFor="lastName" style={{ display: "block" }}>
-                Last Name
-              </label>
-              <TextField
-                id="lastName"
-                placeholder="Enter your lastName"
-                type="text"
-                value={values.lastName}
-                onChange={handleChange}
-              />
-            </div>
-            <div>
-              <label htmlFor="password" style={{ display: "block" }}>
-                Password
-              </label>
-              <TextField
-                id="password"
-                placeholder="Enter your password"
-                type="password"
-                value={values.password}
-                onChange={handleChange}
-              />
-            </div>
-            <div>
-              <label htmlFor="confirmPassword" style={{ display: "block" }}>
-                Confirm Password
-              </label>
-              <TextField
-                id="confirmPassword"
-                placeholder="Enter confirmed password"
-                type="password"
-                value={values.confirmPassword}
-                onChange={handleChange}
-              />
-            </div>
-            <div>
-              <label htmlFor="birthdate" style={{ display: "block" }}>
-                Birthdate
-              </label>
-              <TextField
-                id="birthdate"
-                placeholder="Enter your birthdate"
-                type="text"
-                value={values.birthdate}
-                onChange={handleChange}
-              />
-            </div>
-            <div>
-              <label htmlFor="address" style={{ display: "block" }}>
-                Address
-              </label>
-              <TextField
-                id="address"
-                placeholder="Enter your address"
-                type="text"
-                value={values.address}
-                onChange={handleChange}
-              />
-            </div>
-            <div>
-              <label htmlFor="bio" style={{ display: "block" }}>
-                Bio
-              </label>
-              <TextField
-                id="bio"
-                placeholder="Enter your bio"
-                type="text"
-                value={values.bio}
-                onChange={handleChange}
-              />
-            </div>
+        <TextInput
+          id="username"
+          label="username"
+          type="text"
+          onChange={handleChange}
+        />
+      </div>
+      <div>
+        <TextInput
+          id="email"
+          label="email"
+          type="text"
+          onChange={handleChange}
+        />
+      </div>
+      <div>
+        <TextInput
+          id="firstName"
+          label="firstName"
+          type="text"
+          onChange={handleChange}
+        />
+      </div>
+      <div>
+        <TextInput
+          id="lastName"
+          label="lastName"
+          type="text"
+          onChange={handleChange}
+        />
+      </div>
+      <div>
+        <TextInput
+          id="password"
+          label="password"
+          type="password"
+          onChange={handleChange}
+        />
+      </div>
+      <div>
+        <TextInput
+          id="confirmPassword"
+          label="confirmPassword"
+          type="password"
+          onChange={handleChange}
+        />
+      </div>
+      <div>
+        <TextInput
+          id="birthdate"
+          label="birthdate"
+          type="text"
+          onChange={handleChange}
+        />
+      </div>
+      <div>
+        <TextInput
+          id="address"
+          label="address"
+          type="text"
+          onChange={handleChange}
+        />
+      </div>
+      <div>
+        <TextInput
+          id="bio"
+          label="bio"
+          type="text"
+          onChange={handleChange}
+        />
+      </div>
+      <button type="submit">
+        Submit
+      </button>
     </form>
   );
 }
@@ -314,8 +147,7 @@ const Registration3 = props => {
 const Registration = props => {
   return (
     <>
-    <Registration2 />
-    <Registration3 />
+      <Registration3 />
     </>
   );
 }
