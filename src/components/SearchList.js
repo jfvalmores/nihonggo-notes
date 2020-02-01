@@ -5,6 +5,7 @@ import Grid from '@material-ui/core/Grid';
 import TextField from '@material-ui/core/TextField';
 import SearchIcon from '@material-ui/icons/Search';
 import Tooltip from '@material-ui/core/Tooltip';
+import Paper from '@material-ui/core/Paper';
 
 const styles = makeStyles({
   charBtn: {
@@ -14,6 +15,10 @@ const styles = makeStyles({
   },
   keywordContainer: {
     margin: '10px 0'
+  },
+  main: {
+    margin: 5,
+    padding: 10
   }
 });
 
@@ -33,7 +38,8 @@ function SearchList(props) {
   }
 
   return (
-    <>
+    <Paper
+      className={classes.main}>
       <div className={classes.keywordContainer}>
         <Grid
           container
@@ -67,7 +73,7 @@ function SearchList(props) {
             </Tooltip>
           )))}
       </div>
-    </>
+    </Paper>
   );
 }
 
