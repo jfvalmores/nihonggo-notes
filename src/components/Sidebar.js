@@ -16,7 +16,7 @@ const useStyles = makeStyles({
   }
 });
 
-const Sidebar = (props) => {
+function Sidebar(props) {
   const classes = useStyles();
   const [state, setState] = React.useState({
     top: false,

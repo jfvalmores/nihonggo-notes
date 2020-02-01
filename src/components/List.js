@@ -21,7 +21,7 @@ const customStyles = makeStyles({
   }
 });
 
-export const List = (props) => {
+function List(props) {
   const classes = customStyles();
   const [character, setCharacter] = useState({});
 
@@ -74,5 +74,6 @@ export const List = (props) => {
       </Grid>
     </Grid>
   );
-
 }
+
+export default List;

@@ -56,7 +56,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-export default function VerticalTabs(props) {
+function VerticalTabs(props) {
   const classes = useStyles();
   const [value, setValue] = React.useState(0);
 
@@ -103,3 +103,5 @@ export default function VerticalTabs(props) {
 VerticalTabs.propTypes = {
   tabs: PropTypes.array.isRequired
 };
+
+export default VerticalTabs;

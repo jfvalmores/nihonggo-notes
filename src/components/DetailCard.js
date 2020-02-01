@@ -23,7 +23,7 @@ const customStyles = makeStyles({
   }
 });
 
-export const DetailCard = (props) => {
+function DetailCard(props) {
   if (!props.detail || !props.detail.character) return null;
 
   const classes = customStyles();
@@ -51,3 +51,5 @@ export const DetailCard = (props) => {
     </Grow>
   );
 }
+
+export default DetailCard;

@@ -36,7 +36,7 @@ const ElevationScroll = (props) => {
 }
 
 
-const Header = (props) => {
+function Header(props) {
   const classes = useStyles();
 
   return (
@@ -47,7 +47,7 @@ const Header = (props) => {
           <Toolbar variant="dense">
             <Sidebar />
             <Typography variant="subtitle1" className={classes.title}>
-              Notes
+              ノート
             </Typography>
           </Toolbar>
         </AppBar>

@@ -3,5 +3,4 @@ function getDomain() {
   return `${protocol}//${hostname}`;
 }
 
-export const serverURL = `${process.env.URL}`;
-console.log(process.env);
+export const serverURL = `${process.env.REACT_APP_SERVER_URL}`;

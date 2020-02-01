@@ -52,7 +52,7 @@ const getListStyle = isDraggingOver => ({
   width: 150
 });
 
-const DragDropPlatform = (props) => {
+function DragDropPlatform(props) {
   const [items, setItems] = useState(props.items);
 
   const classes = styles();

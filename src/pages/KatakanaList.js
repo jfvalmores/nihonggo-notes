@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import DragDropPlatform from './DragDropPlatform.js';
+import DragDropPlatform from '../components/DragDropPlatform.js';
 import DataContext from '../core/DataContext.js';
 
 const styles = makeStyles({
@@ -10,13 +10,13 @@ const styles = makeStyles({
   },
 });
 
-const HiraganaList = () => {
+const KatakanaList = () => {
   const classes = styles();
-  const { hiraganaList } = useContext(DataContext);
+  const { katakanaList } = useContext(DataContext);
 
   return (
     <div className={classes.container}>
-      {hiraganaList.map((items, idx) =>
+      {katakanaList.map((items, idx) =>
         <DragDropPlatform
           key={idx}
           items={items} />
@@ -25,4 +25,4 @@ const HiraganaList = () => {
   );
 }
 
-export default HiraganaList;
+export default KatakanaList;

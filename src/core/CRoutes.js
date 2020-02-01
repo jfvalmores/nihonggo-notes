@@ -1,10 +1,10 @@
 import React from 'react';
-import Home from '../components/Home.js';
-import Topics from '../components/Topics.js';
-import KatakanaList from '../components/KatakanaList.js';
-import HiraganaList from '../components/HiraganaList.js';
-import Challenge from '../components/Challenge.js';
-import Registration from '../components/Registration.js';
+import Home from '../pages/Home.js';
+import Topics from '../pages/Topics.js';
+import KatakanaList from '../pages/KatakanaList.js';
+import HiraganaList from '../pages/HiraganaList.js';
+import Challenge from '../pages/Challenge.js';
+import Registration from '../pages/Registration.js';
 
 import DescriptionIcon from '@material-ui/icons/Description';
 import HomeIcon from '@material-ui/icons/Home';
