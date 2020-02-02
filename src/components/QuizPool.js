@@ -35,7 +35,7 @@ function QuizPool(props) {
   return (
     <Paper
       className={classes.main}
-      elevation={3}>
+      elevation={quizPool.length ? 3 : 1}>
       <div>
         {quizPool.length > 0 ?
           <>

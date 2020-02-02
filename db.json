@@ -138,11 +138,11 @@
         "character": "だ"
       },
       {
-        "label": "ji, dji, jyi",
+        "label": "ji",
         "character": "ぢ"
       },
       {
-        "label": "dzu, zu",
+        "label": "zu",
         "character": "づ"
       },
       {
@@ -320,7 +320,7 @@
     ],
     [
       {
-        "label": "n, m",
+        "label": "n",
         "character": "ん"
       }
     ]
@@ -464,7 +464,7 @@
         "character": "ダ"
       },
       {
-        "label": "ji, dji, jyi",
+        "label": "ji",
         "character": "ヂ"
       },
       {

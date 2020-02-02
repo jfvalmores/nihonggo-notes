@@ -10,7 +10,7 @@ import InputLabel from '@material-ui/core/InputLabel';
 import FormControl from '@material-ui/core/FormControl';
 import FormHelperText from '@material-ui/core/FormHelperText';
 
-const styles = makeStyles({
+const styles = makeStyles(theme => ({
   card: {
     maxWidth: 300,
     textAlign: 'center',
@@ -24,8 +24,18 @@ const styles = makeStyles({
   },
   actionButton: {
     fontSize: 10
+  },
+  root: {
+    '& > *': {
+      margin: theme.spacing(1),
+    },
+  },
+  label: {
+    paddingLeft: 2,
+    paddingRight: 2,
+    backgroundColor: 'white'
   }
-});
+}));
 
 function CharacterCard(props) {
   const [answer, setAnswer] = useState('');
@@ -37,6 +47,7 @@ function CharacterCard(props) {
     refresh,
     quizMode,
     proceedQuiz,
+    quizStatus,
   } = props;
 
   const handleChangeAnswer = (e) => {
@@ -45,7 +56,10 @@ function CharacterCard(props) {
 
   const handleKeyDown = (e) => {
     if (e.key === 'Enter') {
-      proceed();
+      proceedQuiz(answer);
+      if (quizStatus !== 'ONGOING') {
+        setAnswer('');
+      }
     }
   }
 
@@ -70,12 +84,12 @@ function CharacterCard(props) {
         </Typography>
         {quizMode ?
           <>
-            <FormControl variant="outlined">
-              <InputLabel htmlFor="component-outlined">Name</InputLabel>
-              <OutlinedInput id="component-outlined" value={answer} onChange={handleChangeAnswer} label="Name" />
-            </FormControl>
-            <FormControl variant="outlined">
-              <InputLabel htmlFor="answer">Answer</InputLabel>
+            <FormControl variant="outlined" error={quizStatus === 'WRONG'}>
+              <InputLabel
+                className={classes.label}
+                htmlFor="answer">
+                Answer
+              </InputLabel>
               <OutlinedInput
                 id="answer"
                 label="Answer"
@@ -83,7 +97,11 @@ function CharacterCard(props) {
                 onChange={handleChangeAnswer}
                 onKeyDown={handleKeyDown}
               />
-              <FormHelperText id="component-helper-text">Some important helper text</FormHelperText>
+              {quizStatus !== 'ONGOING' &&
+                <FormHelperText id="component-helper-text">
+                  '{label}'
+                </FormHelperText>
+              }
             </FormControl>
           </>
           :
@@ -100,7 +118,7 @@ function CharacterCard(props) {
             size="small"
             onClick={proceed}
             className={classes.actionButton}>
-            Proceed
+            {quizStatus === 'ONGOING' ? 'Confirm' : 'Proceed'}
           </Button>
           :
           <Button

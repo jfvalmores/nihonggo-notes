@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom';
-import { routes } from './core/CRoutes.js';
+import { BrowserRouter as Router, Switch } from 'react-router-dom';
+
 import { makeStyles } from '@material-ui/core/styles';
 import Header from './components/Header.js';
 import intf from './core/CInterface.js';
 import DataContext from './core/DataContext.js';
+import Main from './components/Main.js';
 
 const { getHiraganaList, getKatakanaList } = intf();
 
@@ -38,24 +39,15 @@ const App = () => {
 
   return (
     <DataContext.Provider value={{ hiraganaList, katakanaList }}>
-      <div>
-        <Router>
-          <Header>
-            <div className={classes.container}>
-              <Switch>
-                {routes.map((route, idx) => (
-                  <Route
-                    key={idx}
-                    exact
-                    {...route}
-                  />
-                ))}
-                <Redirect exact from="/" to="home" />
-              </Switch>
-            </div>
-          </Header>
-        </Router>
-      </div>
+      <Router>
+        <Header>
+          <div className={classes.container}>
+            <Switch>
+              <Main></Main>
+            </Switch>
+          </div>
+        </Header>
+      </Router>
     </DataContext.Provider>
   );
 }

@@ -52,7 +52,7 @@ function Sidebar(props) {
             button
             key={route.title}
             onClick={() => handleClick(route.path)}>
-            <ListItemIcon>{route.icon}</ListItemIcon>
+            <ListItemIcon>{React.createElement(route.icon)}</ListItemIcon>
             <ListItemText>{route.title}</ListItemText>
           </ListItem>
         ))}

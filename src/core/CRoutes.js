@@ -16,25 +16,25 @@ export const routes = [
   {
     title: 'Home',
     path: '/home',
-    icon: <HomeIcon />,
+    icon: HomeIcon,
     component: Home
   },
   {
     title: 'Topics',
     path: '/topics',
-    icon: <DescriptionIcon />,
+    icon: DescriptionIcon,
     component: Topics
   },
   {
     title: 'Challenge',
     path: '/challenge',
-    icon: <GamesIcon />,
+    icon: GamesIcon,
     component: Challenge
   },
   {
     title: 'Registration',
     path: '/registration',
-    icon: <AccountBoxIcon />,
+    icon: AccountBoxIcon,
     component: Registration
   },
 ];
