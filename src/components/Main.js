@@ -9,10 +9,6 @@ function Main(props) {
     severity: 'info'
   });
 
-  const {
-    children,
-  } = props;
-
   const handlePopupClose = (event, reason) => {
     if (reason === 'clickaway') return;
     setPopup({
