@@ -1,3 +1,8 @@
 # nihonggo-notes
 
-React practice app
+React app that helps memorizing basic nihonggo characters (hiragana and katakana)
+
+## Features
+- Character cards
+- Master List
+- Quiz
