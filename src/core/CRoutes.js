@@ -31,12 +31,12 @@ export const routes = [
     icon: GamesIcon,
     component: Challenge
   },
-  {
-    title: 'Registration',
-    path: '/registration',
-    icon: AccountBoxIcon,
-    component: Registration
-  },
+  // {
+  //   title: 'Registration',
+  //   path: '/registration',
+  //   icon: AccountBoxIcon,
+  //   component: Registration
+  // },
 ];
 
 export const topicRoutes = [

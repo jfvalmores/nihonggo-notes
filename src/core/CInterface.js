@@ -30,7 +30,7 @@ function handleResult(response) {
 }
 
 function handleException(error) {
-  console.log(error);
+  console.error(error);
 
   return error;
 }
