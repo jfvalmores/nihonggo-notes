@@ -25,7 +25,7 @@
     "serialize-javascript": "^2.1.2"
   },
   "scripts": {
-    "start": "concurrently \"json-server -w db.json -p 3004\" \"react-scripts start\"",
+    "start": "concurrently \"json-server -H 10.0.0.190 db.json -p 3004\" \"react-scripts start\"",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
