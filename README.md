@@ -1,4 +1,4 @@
-# nihonggo-notes
+# Nihonggo Notes
 
 React app that helps memorizing basic nihonggo characters (hiragana and katakana)
 
