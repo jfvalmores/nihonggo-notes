@@ -8,4 +8,4 @@ React app that helps memorizing basic nihonggo characters (hiragana and katakana
 - Quiz
 
 ## Demo
-[Nihonggo Notes | For Study](https://wonderful-kowalevski-030160.netlify.app)
+[Nihonggo Notes](https://wonderful-kowalevski-030160.netlify.app)
