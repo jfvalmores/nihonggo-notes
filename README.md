@@ -3,8 +3,8 @@
 React app that helps memorizing basic nihonggo characters (hiragana and katakana)
 
 ## Features
-- Character cards
-- Master List
+- Character Cards
+- Character List
 - Quiz
 
 ## Demo
